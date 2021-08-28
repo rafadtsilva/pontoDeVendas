@@ -9,38 +9,36 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
   <link rel="stylesheet" href="style.css">
-  
   <style>
-    
-
+    #row1 .col {
+      /* background-color: red; */
+    }
   </style>
-
-</head>
-<body>
   
-  <div class="container">
+ 
+ 
+</head>
+<body class="d-flex p-3">
+  
+  <div class="container border shadow rounded bg-primary">
     
-    <h1 class="py-3 text-center">FOTOPAPER PDV</h1>
+    <h1 class="py-3 text-center text-white">FOTOPAPER PDV</h1>
 
-    <div id="row1" class="row">
+    <div id="row1" class="row ">
 
-      <div id="infos" class="col-8 bg-danger">1
+      <div class="col m-2 bg-light border rounded shadow-sm">
+        <input type="text" class="form-control" placeholder="Descrição do Produto" aria-label="Descriçã" aria-describedby="basic-addon1">      </div>
 
-        <div class="row">
-          <div id="nota" class="col bg-info">1</div>
-        </div>
-
-      </div>
-
-      <div class="col-4 bg-success">
-        1
-      </div>
-        
     </div>
-    
 
 
+    <div id="row2" class="row">
 
+      <div id="nota" class="col-8 m-2 bg-light rounded border shadow-sm">1</div>
+
+      <div id="best" class="col m-2 bg-light rounded border shadow-sm">1</div>
+
+    </div>
 
   </div>
 

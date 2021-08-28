@@ -1,0 +1,11 @@
+.container {
+  height: 90vh;
+}
+
+#row1 .col {
+  height: 18vh;
+}
+
+#row2 #nota {
+  height: 55vh;
+}
