@@ -18,6 +18,7 @@
 
 table {
   width: 100%;
+  font-size: 12px;
 }
 
 table thead:nth-child(1) {
@@ -29,7 +30,7 @@ table thead:nth-child(1) {
 }
 
 #best .row .best-itens, #payout .row .pay-options {
-  height: 13vh;
+  height: 10vh;
 }
 
 @media (max-width: 768px) { 
