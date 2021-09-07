@@ -1,11 +1,39 @@
-.container {
+/* * {
+  box-sizing: border-box;
+} */
+
+#container {
   height: 90vh;
+  /* max-width: 1200px; */
+  /* min-width: 680px; */
 }
 
-#row1 .col {
-  /* height: 18vh; */
+#row1 {
+  margin: 0;
 }
 
-#row2 #nota {
+#row2 {
   height: 55vh;
+}
+
+table {
+  width: 100%;
+}
+
+table thead:nth-child(1) {
+  width: 5%;
+}
+
+.col-2 .btn {
+  width: 100%;
+}
+
+#best .row .best-itens, #payout .row .pay-options {
+  height: 13vh;
+}
+
+@media (max-width: 768px) { 
+  table {
+    /* font-size: 13px; */
+  }
 }
