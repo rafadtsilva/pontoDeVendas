@@ -25,6 +25,10 @@ table thead:nth-child(1) {
   width: 5%;
 }
 
+table tbody #description {
+  width: 45%;
+}
+
 .col-2 .btn {
   width: 100%;
 }
