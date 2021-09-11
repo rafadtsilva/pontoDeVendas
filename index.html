@@ -14,11 +14,11 @@
  
  
 </head>
-<body class="mt-3 bg-primary ">
+<body class="mt-2 bg-primary ">
   
   <div id="container" class="container-lg px-5">
     
-    <h1 class="py-2 text-center text-white">FOTOPAPER PDV</h1>
+    <h1 class="py-1 text-center text-white">FOTOPAPER PDV</h1>
 
     <form id="purchase-data" action="#">
 
@@ -40,9 +40,9 @@
           <input id="ok" type="submit" value="ok" class="btn btn-success">
         </div>
 
-        <div class="col-12 py-3 mt-2 bg-light border border-secondary border-2 rounded shadow-sm">  
-          <h6 class="text-secondary m-0 p-0 text-center">Último Produto adicionado</h6>
-          <h3 id="showDescription" class="text-center m-0 p-0">Descrição do produto</h3>
+        <div class="col-12 py-2 mt-2 bg-light border border-secondary border-2 rounded shadow-sm">  
+          <h6 class="text-secondary m-0 p-0 text-center fs-6">Último Produto adicionado</h6>
+          <h3 id="showDescription" class="text-center m-0 p-0 text-uppercase fs-5 fs-md-3">Descrição do produto</h3>
 
         </div>
         
@@ -71,20 +71,7 @@
             </thead>
             
             <tbody id="nota-body">
-              <tr>
-                <td class="pe-3">1</td>
-                <td id="description" class="text-start">Descrição do produto</td>
-                <td class="px-2">R$ 2,99</td>
-                <td>3</td>
-                <td>R$ 8,97</td>
-              </tr>
-              <tr>
-                <td class="pe-3">1</td>
-                <td class="text-start"><span>Grande Descrição do produto</span></td>
-                <td class="px-2">R$ 2,99</td>
-                <td>3</td>
-                <td>R$ 812312,97</td>
-              </tr>
+              
             </tbody>
 
             <tfoot>
@@ -101,21 +88,21 @@
       </div>
 
       
-      <div id="best" class="col col-md-4 mt-2 mt-md-0 bg-light rounded border border-secondary border-2 shadow-sm">
-        <div class="row justify-content-evenly p-3">
-          <h6 id="teste" class="text-center">FAVORITOS</h6>
-          <div class="best-itens col-2 col-md-6 bg-success border">1</div>
-          <div class="best-itens col-2 col-md-6 bg-success border">1</div>
-          <div class="best-itens col-2 col-md-6 bg-success border">1</div>
-          <div class="best-itens col-2 col-md-6 bg-success border">1</div>
-          <div class="best-itens col-2 col-md-6 bg-success border">1</div>
-          <div class="best-itens col-2 col-md-6 bg-success border">1</div>
+      <div id="best" class="col col-md-4 mt-2 p-2 mt-md-0 bg-light rounded border border-secondary border-2 shadow-sm">
+        <h6 id="teste" class="text-center pt-1 fw-bold">FAVORITOS</h6>
+        <div class="row px-3 align-self-center justify-content-center">
+          <div class="best-itens col-4 col-md-6 border text-white fw-bold d-flex align-items-center justify-content-center btn btn-success">Xerox P/B</div>
+          <div class="best-itens col-4 col-md-6 border text-white fw-bold d-flex align-items-center justify-content-center btn btn-success">Xerox Col</div>
+          <div class="best-itens col-4 col-md-6 border text-white fw-bold d-flex align-items-center justify-content-center btn btn-success">Impressão P/B</div>
+          <div class="best-itens col-4 col-md-6 border text-white fw-bold d-flex align-items-center justify-content-center btn btn-success">Impressão Cor</div>
+          <div class="best-itens col-4 col-md-6 border text-white fw-bold d-flex align-items-center justify-content-center btn btn-success">Curriculo</div>
+          <div class="best-itens col-4 col-md-6 border text-white fw-bold d-flex align-items-center justify-content-center btn btn-success">Scanner</div>
         </div>
       </div>
 
       <div id="payout" class="col-12 col-lg-2 mt-2 mt-lg-0 bg-light rounded border border-secondary border-2 ">
-        <div class="row flex-row justify-content-evenly p-3">
-          <h6 class="text-center">PAYOUT</h6>
+        <h6 class="text-center pt-2">PAYOUT</h6>
+        <div class="row flex-row justify-content-evenly px-3 pb-2">
           <div class="pay-options col-3 col-lg-12 bg-warning border">1</div>
           <div class="pay-options col-3 col-lg-12 bg-warning border">1</div>
           <div class="pay-options col-3 col-lg-12 bg-warning border">1</div>
@@ -123,7 +110,10 @@
         </div>
       </div>
 
-      <div class="col-12 p-2 mt-2 bg-light border border-secondary border-2 rounded shadow-sm align-self-center">  
+    </div>
+    <div id="row3" class="row mx-1 my-1">
+
+      <div class="col-12 p-2 mt-0 bg-light border border-secondary border-2 rounded shadow-sm align-self-center">  
         <h3 class="m-1">Valor Total: <span id="total-value">R$ 0,00</span></h3>
       </div>
 
