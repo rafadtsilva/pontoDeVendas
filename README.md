@@ -53,9 +53,13 @@ Em breve!!
 
 <h2 id="features">🚀 Features</h2>
 
-- [x] Alteração facilitada das cores
-- [ ] Implementar uma forma do usuário alterar facílmente as cores e informações da empresa.
-- [ ] # implementar um usuário Master que possa realizar as alterações direto na interface.
+- [x] Configuração do layout da interface;
+- [x] Configuraçao das regras de entrada de informações nas inputs;
+- [x] Configuração da inclusão das informações inseridas na nota;
+- [ ] Cadastrar Produtos no Firebase;
+- [ ] Pegar informações dos produtos no Firebase e inserir na nota;
+- [ ] Gerenciar o estoque;
+- [ ] Guardar e consultar histórico de vendas por data;
 
 <br>
 <br>
