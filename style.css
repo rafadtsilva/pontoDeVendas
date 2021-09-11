@@ -16,6 +16,7 @@
   height: 60px;
   font-size: 20px;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 #row2 {
@@ -25,6 +26,7 @@
 table {
   width: 100%;
   font-size: 12px;
+  font-weight: bold;
 }
 
 table thead:nth-child(1) {
@@ -33,6 +35,12 @@ table thead:nth-child(1) {
 
 table tbody #description {
   width: 45%;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+table tfoot {
+  font-size: 15px;
 }
 
 .col-2 .btn {

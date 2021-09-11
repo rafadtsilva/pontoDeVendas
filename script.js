@@ -6,10 +6,31 @@ var twoDecimal
 var realFormat;
 var listNumber = 0;
 var totalValue = $("#valor-total");
+var totalValue2 = $("#total-value");
 var totalValueAcc = 0;
-// const testAmount = /[0-9][0-9]+/;
 
-// $("#ok").click(lerDados)
+var purchaseData = document.getElementById("purchase-data");
+console.log(purchaseData) 
+
+//ADCIONANDO EVENTO PARA QUANDO APERTAR NO BOTÃO ENTER ELE DAR CLICK NO BOTÃO DO FORMULÁRIO
+$("#price").keypress(e => {
+  if(e.which == 13) {
+    purchaseData.dispatchEvent(new Event('click'));
+  };
+})
+
+$("#amount").keypress(e => {
+  if(e.which == 13) {
+    purchaseData.dispatchEvent(new Event('click'));
+  };
+})
+
+$("#description").keypress(e => {
+  if(e.which == 13) {
+    purchaseData.dispatchEvent(new Event('click'));
+  };
+})
+
 $("#purchase-data").submit(lerDados);
 
 function lerDados() {
@@ -25,15 +46,15 @@ function lerDados() {
   $("#nota-body").append(`<tr>
                             <td class="pe-3">${listNumber+1}</td>
                             <td id="description" class="text-start"><span>${description}</span></td>
-                            <td class="px-2">R$ ${price}</td>
+                            <td class="px-2">R$ ${price.toFixed(2)}</td>
                             <td>${amount}</td>
                             <td>R$ ${(amount*price).toFixed(2)}</td>
                           </tr>`);
 
   listNumber++
-  console.log(parseFloat((amount*price).toFixed(2)))
   totalValueAcc += parseFloat((amount*price).toFixed(2));
-  totalValue.text(`R$ ${totalValueAcc}`)
+  totalValue.text(`R$ ${totalValueAcc.toFixed(2)}`);
+  totalValue2.text(`R$ ${totalValueAcc.toFixed(2)}`);
 
   $("#valor-total").text()
   
