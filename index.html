@@ -25,15 +25,15 @@
       <div id="row1" class="row mx-1 justify-content-center">
 
         <div class="col-5 p-2 bg-light border border-secondary border-2 rounded shadow-sm">        
-          <input id="description" type="text" class="form-control" placeholder="Descrição" aria-label="Descrição" minlength="2" required>
+          <input id="bill-name" type="text" class="form-control" placeholder="Descrição" aria-label="Descrição" minlength="2" required>
         </div>
         
         <div class="col-2 col-lg-3 p-2 bg-light border border-secondary border-2 rounded shadow-sm">        
-          <input id="amount" type="number" class="form-control" placeholder="Quantidade" aria-label="Quantidade" min="1" max="99" required>
+          <input id="bill-amount" type="number" class="form-control" placeholder="Quantidade" aria-label="Quantidade" min="1" max="99" required>
         </div>
 
         <div class="col-3 p-2 bg-light border border-secondary border-2 rounded shadow-sm">        
-          <input id="price" type="number" step=".01" class="form-control" placeholder="Valor unitário(ex:1,90)" aria-label="Valor" max="999" required>
+          <input id="bill-price" type="number" step=".01" class="form-control" placeholder="Valor unitário(ex:1,90)" aria-label="Valor" max="999" required>
         </div>
         
         <div class="col-2 col-lg-1 p-2 bg-light border border-secondary border-2 rounded shadow-sm">        
@@ -79,7 +79,7 @@
                 <td></td>
                 <td></td>
                 <td class="fw-bold pt-4 fs-sm" colspan="2">Valor Total</td>
-                <td id="valor-total" class="fw-bold pt-4">R$ 0,00</td>
+                <td id="total-value1" class="fw-bold pt-4">R$ 0,00</td>
               </tr>
             </tfoot>
 
@@ -114,7 +114,7 @@
     <div id="row3" class="row mx-1 my-1">
 
       <div class="col-12 p-2 mt-0 bg-light border border-secondary border-2 rounded shadow-sm align-self-center">  
-        <h3 class="m-1">Valor Total: <span id="total-value">R$ 0,00</span></h3>
+        <h3 class="m-1">Valor Total: <span id="total-value2">R$ 0,00</span></h3>
       </div>
 
     </div>
@@ -128,6 +128,10 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
   <script src="script.js"></script>
 </body>
