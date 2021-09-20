@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 let db = firebase.firestore();
-const PRODUTOS = "Produtos"
+const PRODUCTS = "Produtos"
 const SERVICES = "Serviços"
 
 // db.collection(SERVICES).doc("inicio").set({
@@ -53,85 +53,77 @@ var productNumber = 0;
 var serviceNumber = 0;
 var totalValueOfSpecificRegister = 0;
 var totalValueAcc = 0;
+var item;
+var bill = [];
 
-const insertProducs = function(nome, amount, cost, value) {
+const insertProducsAndServices = function(nome, cost, value, amount, type) {
   
-  db.collection(PRODUTOS).doc(productNumber.toString()).set({
-
+  db.collection(type).doc(productNumber.toString()).set({
     nome: nome,
     amount: amount,
     cost: cost,
     value: value
-
   }).then(doc => {
     console.log("Produto inserido com sucesso", doc);
   }).catch(err => {
     console.log(err);
   })
-
   productNumber++
 
-
 }
 
-const insertServices = function(nome, cost, value, amount) {
+// const insertServices = function(nome, cost, value, amount, type) {
   
-  db.collection(SERVICES).doc(serviceNumber.toString()).set({
+//   db.collection(type).doc(serviceNumber.toString()).set({
+//     nome: nome,
+//     amount: amount,
+//     cost: cost,
+//     value: value
+//   }).then(doc => {
+//     console.log("Serviço inserido com sucesso", doc);
+//   }).catch(err => {
+//     console.log(err);
+//   })
+//   serviceNumber++;
 
-    nome: nome,
-    amount: amount,
-    cost: cost,
-    value: value
+// }
 
-  }).then(doc => {
-    console.log("Produto inserido com sucesso", doc);
-  }).catch(err => {
-    console.log(objeto)
-    console.log(err);
+var nomeDb;
+var valueDb;
+var amountDb;
+
+async function getServicesAndProductsByName (nome, type) {
+
+  await db.collection(type).where("nome", "==", nome).get().then(async snapshot => {
+    await snapshot.forEach(async doc => {
+      let item = doc.data();
+      pegandoDoDb(item.nome, item.value)
+      
+    })
   })
 
-  serviceNumber++;
-  
 }
 
-var bill = [];
-class billProducts {
-  constructor(name, value, amount) {
-    this.name = name;
-    this.value = value;
-    this.amount = amount;
-    this.totalValue = parseFloat((value * amount).toFixed(2));
-  }
-}
 
-var products = [];
-// class Produto {
-//   constructor(name, value, amount) {
-//     this.name = name;
-//     this.valor = value;
-//     this.amount = amount;
-//   }
-// }
+
+getServicesAndProductsByName("Lapis", PRODUCTS);
+console.log(nomeDb, valueDb, amountDb)
+
+// insertProducsAndServices("Xerox P/B", 0.20, 0.50, 999999, SERVICES)
+// insertProducsAndServices("Xerox Color", 0.40, 1.00, 999999, SERVICES)
+// insertProducsAndServices("Impressão P/B", 0.20, 0.50, 999999, SERVICES)
+// insertProducsAndServices("Impressão Color", 0.40, 1.00, 999999, SERVICES)
+// insertProducsAndServices("Curriculo", 1, 4.00, 999999, SERVICES)
+// insertProducsAndServices("Scanner", 0.20, 0.50, 999999, SERVICES)
+// insertProducsAndServices("Lapis", 0.40, 0.80, 100, PRODUCTS)
+// insertProducsAndServices("Caneta", 0.45, 1, 300, PRODUCTS)
 
 
 
-insertServices("Xerox P/B", 0.20, 0.50, 999999)
-insertServices("Xerox Color", 0.40, 1.00, 999999)
-insertServices("Impressão P/B", 0.20, 0.50, 999999)
-insertServices("Impressão Color", 0.40, 1.00, 999999)
-insertServices("Curriculo", 1, 4.00, 999999)
-insertServices("Scanner", 0.20, 0.50, 999999)
-
-// products[0] = new Produto ("Lapis", 0.80, 100);
-// console.log(products[0]);
-// var objeto1 = {
-//   nome: "RAfael",
-//   idade: 3
-// }
-
-var purchaseData = document.getElementById("purchase-data");
 
 //ADCIONANDO EVENTO PARA QUANDO APERTAR NO BOTÃO ENTER ELE DAR CLICK NO BOTÃO DO FORMULÁRIO
+var purchaseData = document.getElementById("purchase-data");
+
 $("#price").keypress(e => {
   if(e.which == 13) {
     purchaseData.dispatchEvent(new Event('click'));
@@ -158,13 +150,26 @@ function registerProducts () {
   billAmount = parseInt($("#bill-amount").val());
   billPrice = parseFloat($("#bill-price").val());
 
-  bill[listNumber] = new billProducts(billName, billPrice, billAmount)
+  bill[listNumber] = {
+    nome: billName,
+    price: billPrice,
+    amount: billAmount,
+    total: billAmount*billPrice
+  }
   console.log(bill)
 
   //atualiza última descrição
   $("#showDescription").text(`${billName} (x${billAmount}})`)
   
   totalValueOfSpecificRegister = parseFloat((billAmount * billPrice).toFixed(2));
+
+  bill[listNumber] = {
+    nome: billName,
+    price: billPrice,
+    amount: billAmount,
+    total: totalValueOfSpecificRegister
+  }
+  console.log(bill)
 
     //adiciona a descrição do produto inserido a nota
   $("#nota-body").append(`<tr>
@@ -186,4 +191,9 @@ function registerProducts () {
   $("#bill-amount").val("");
   $("#bill-price").val("")
     
+}
+
+function pegandoDoDb(nome, price) {
+  $("#bill-name").val(nome);
+  $("#bill-price").val(price);
 }
