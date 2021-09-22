@@ -11,8 +11,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 let db = firebase.firestore();
-const PRODUCTS = "Produtos"
-const SERVICES = "Serviços"
+const PAS = "ProductsAndServices";
 
 // db.collection(SERVICES).doc("inicio").set({
     
@@ -31,9 +30,9 @@ const SERVICES = "Serviços"
 //    })
 
 //DELETADOR
-// db.collection(SERVICES).get().then((snapshot) => {
+// db.collection(PAS).get().then((snapshot) => {
 //   snapshot.forEach(doc => {
-//     db.collection(SERVICES).doc(doc.id).delete().then(() => {
+//     db.collection(PAS).doc(doc.id).delete().then(() => {
 //       console.log(`${doc.id} apagado com sucesso`)
 //     }).catch((err) => {
 //       console.log(err)
@@ -56,13 +55,13 @@ var totalValueAcc = 0;
 var item;
 var bill = [];
 
-const insertProducsAndServices = function(nome, cost, value, amount, type) {
+const insertProducsAndServices = function(nome, cost, price, amount, type) {
   
   db.collection(type).doc(productNumber.toString()).set({
     nome: nome,
     amount: amount,
     cost: cost,
-    value: value
+    price: price
   }).then(doc => {
     console.log("Produto inserido com sucesso", doc);
   }).catch(err => {
@@ -72,51 +71,31 @@ const insertProducsAndServices = function(nome, cost, value, amount, type) {
 
 }
 
-// const insertServices = function(nome, cost, value, amount, type) {
-  
-//   db.collection(type).doc(serviceNumber.toString()).set({
-//     nome: nome,
-//     amount: amount,
-//     cost: cost,
-//     value: value
-//   }).then(doc => {
-//     console.log("Serviço inserido com sucesso", doc);
-//   }).catch(err => {
-//     console.log(err);
-//   })
-//   serviceNumber++;
+// var nomeDb;
+// var valueDb;
+// var amountDb;
 
-// }
+function getServicesAndProductsByName (nome, type) {
 
-var nomeDb;
-var valueDb;
-var amountDb;
-
-async function getServicesAndProductsByName (nome, type) {
-
-  await db.collection(type).where("nome", "==", nome).get().then(async snapshot => {
-    await snapshot.forEach(async doc => {
-      let item = doc.data();
-      pegandoDoDb(item.nome, item.value)
-      
+  db.collection(type).where("nome", "==", nome).get().then(snapshot => {
+    snapshot.forEach(doc => {
+    let item = doc.data();
+    pegandoDoDb(item.nome, item.price);  
     })
   })
 
 }
 
+getServicesAndProductsByName("Curriculo", PAS);
 
-
-getServicesAndProductsByName("Lapis", PRODUCTS);
-console.log(nomeDb, valueDb, amountDb)
-
-// insertProducsAndServices("Xerox P/B", 0.20, 0.50, 999999, SERVICES)
-// insertProducsAndServices("Xerox Color", 0.40, 1.00, 999999, SERVICES)
-// insertProducsAndServices("Impressão P/B", 0.20, 0.50, 999999, SERVICES)
-// insertProducsAndServices("Impressão Color", 0.40, 1.00, 999999, SERVICES)
-// insertProducsAndServices("Curriculo", 1, 4.00, 999999, SERVICES)
-// insertProducsAndServices("Scanner", 0.20, 0.50, 999999, SERVICES)
-// insertProducsAndServices("Lapis", 0.40, 0.80, 100, PRODUCTS)
-// insertProducsAndServices("Caneta", 0.45, 1, 300, PRODUCTS)
+// insertProducsAndServices("Xerox P/B", 0.20, 0.50, 999999, PAS)
+// insertProducsAndServices("Xerox Color", 0.40, 1.00, 999999, PAS)
+// insertProducsAndServices("Impressão P/B", 0.20, 0.50, 999999, PAS)
+// insertProducsAndServices("Impressão Color", 0.40, 1.00, 999999, PAS)
+// insertProducsAndServices("Curriculo", 1, 4.00, 999999, PAS)
+// insertProducsAndServices("Scanner", 0.20, 0.50, 999999, PAS)
+// insertProducsAndServices("Lapis", 0.40, 0.80, 100, PAS)
+// insertProducsAndServices("Caneta", 0.45, 1, 300, PAS)
 
 
 
@@ -159,7 +138,7 @@ function registerProducts () {
   console.log(bill)
 
   //atualiza última descrição
-  $("#showDescription").text(`${billName} (x${billAmount}})`)
+  $("#showDescription").text(`${billName} (x${billAmount})`)
   
   totalValueOfSpecificRegister = parseFloat((billAmount * billPrice).toFixed(2));
 
@@ -195,5 +174,5 @@ function registerProducts () {
 
 function pegandoDoDb(nome, price) {
   $("#bill-name").val(nome);
-  $("#bill-price").val(price);
+  $("#bill-price").val(price.toFixed(2));
 }
