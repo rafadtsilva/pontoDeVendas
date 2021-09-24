@@ -12,7 +12,18 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 let db = firebase.firestore();
 const PAS = "ProductsAndServices";
+const storage = firebase.storage();
 
+const ref = storage.ref();
+
+ref.listAll().then(res => {
+  
+  console.log(res.items)
+  // res.items[0].getDownloadURL().then(url => {
+  //   console.log(url)
+  // })
+
+})
 // db.collection(SERVICES).doc("inicio").set({
     
 //   nome: "teste"
@@ -54,10 +65,12 @@ var totalValueOfSpecificRegister = 0;
 var totalValueAcc = 0;
 var item;
 var bill = [];
+var items = [];
+var text = "Imp"
 
-const insertProducsAndServices = function(nome, cost, price, amount, type) {
+const insertProducsAndServices = async function(nome, cost, price, amount, type) {
   
-  db.collection(type).doc(productNumber.toString()).set({
+  await db.collection(type).doc(productNumber.toString()).set({
     nome: nome,
     amount: amount,
     cost: cost,
@@ -71,22 +84,70 @@ const insertProducsAndServices = function(nome, cost, price, amount, type) {
 
 }
 
-// var nomeDb;
-// var valueDb;
-// var amountDb;
+// ==================== MEU PROBLEMA COMEÇA AQUI =======================
+async function getNames() {
+
+  await db.collection(PAS).get().then(snapshot => {
+    snapshot.forEach(doc => {
+      let item = doc.data()
+      items.push(item.nome);
+      
+    })
+
+    let itemsDaPesquisa = items.filter(searchItems)
+    console.log(itemsDaPesquisa)
+  })
+  
+}
+
+getNames();
+
+
+function searchItems(item) {
+  return item.indexOf(text) !== -1
+}
+
+// console.log(items)
+
+// items.forEach(item => {
+//   console.log(item + "asdsdf")
+// })
+
+// setTimeout(() => {
+
+//   let itemsDaPesquisa = items.filter(searchItems)
+
+//   console.log(itemsDaPesquisa)
+
+// }, 2000)
+
+// console.log(itemsDaPesquisa)
+
+
+// ================ MEU PROBLEMA TERMINA AQUI =========================
+
 
 function getServicesAndProductsByName (nome, type) {
 
-  db.collection(type).where("nome", "==", nome).get().then(snapshot => {
+  db.collection(type).where("nome", ">", nome).get().then(snapshot => {
     snapshot.forEach(doc => {
     let item = doc.data();
-    pegandoDoDb(item.nome, item.price);  
+    pegandoDoDb(item.nome, item.price);
+    console.log(item)
     })
+  }).catch(err => {
+    console.log(err)
   })
 
 }
 
-getServicesAndProductsByName("Curriculo", PAS);
+function pegandoDoDb(nome, price) {
+  $("#bill-name").val(nome);
+  $("#bill-price").val(price.toFixed(2));
+}
+
+// getServicesAndProductsByName("I", PAS);
+
 
 // insertProducsAndServices("Xerox P/B", 0.20, 0.50, 999999, PAS)
 // insertProducsAndServices("Xerox Color", 0.40, 1.00, 999999, PAS)
@@ -172,7 +233,3 @@ function registerProducts () {
     
 }
 
-function pegandoDoDb(nome, price) {
-  $("#bill-name").val(nome);
-  $("#bill-price").val(price.toFixed(2));
-}
