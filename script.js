@@ -14,16 +14,35 @@ let db = firebase.firestore();
 const PAS = "ProductsAndServices";
 const storage = firebase.storage();
 
-const ref = storage.ref();
+const ref = storage.ref("/imagens");
 
-ref.listAll().then(res => {
+const fileInput = document.getElementById("file-input");
+
+fileInput.addEventListener("change", (e)=>{
   
-  console.log(res.items)
-  // res.items[0].getDownloadURL().then(url => {
-  //   console.log(url)
-  // })
+  const file = e.target.files[0]
+  ref.child(file.name).put(file).then(snapshot => {
+    console.log(snapshot)
+  })
 
 })
+
+
+
+// ref.child("lapis.jpg").getDownloadURL().then(url => { console.log(url) })
+// ref.parent.child("lapis3.jpg").getDownloadURL().then(url => { console.log(url) }) //retorna para o pai
+
+// ref.root.listAll().then(res => { console.log(res) }) //retorna para o inicio
+
+// console.log(ref.parent.child("lapis3.jpg").name) //pega o nome
+
+// const file = ref.child("lapis.jpg")
+// console.log(ref.fullPath) //mostra o endereço completo
+
+
+
+
+
 // db.collection(SERVICES).doc("inicio").set({
     
 //   nome: "teste"
