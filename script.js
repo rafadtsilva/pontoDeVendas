@@ -16,16 +16,18 @@ const storage = firebase.storage();
 
 const ref = storage.ref("/imagens");
 
-const fileInput = document.getElementById("file-input");
 
-fileInput.addEventListener("change", (e)=>{
+//faz upload de arquivo
+// const fileInput = document.getElementById("file-input");
+
+// fileInput.addEventListener("change", (e)=>{
   
-  const file = e.target.files[0]
-  ref.child(file.name).put(file).then(snapshot => {
-    console.log(snapshot)
-  })
+//   const file = e.target.files[0]
+//   ref.child(file.name).put(file).then(snapshot => {
+//     console.log(snapshot)
+//   })
 
-})
+// })
 
 
 
