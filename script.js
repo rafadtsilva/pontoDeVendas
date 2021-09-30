@@ -57,7 +57,7 @@ var totalValueAcc = 0;
 var item;
 var bill = [];
 var items = [];
-var text = "Imp"
+var text = "xe"
 
 const insertProducsAndServices = async function(nome, cost, price, amount, type) {
   
@@ -95,7 +95,7 @@ getNames();
 
 
 function searchItems(item) {
-  return item.indexOf(text) !== -1
+  return item.toLowerCase().includes(text.toLowerCase())
 }
 
 // console.log(items)
